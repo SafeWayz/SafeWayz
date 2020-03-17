@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="SafeWayz.Views.AddNewIncidentReport">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="REPORT AN INCIDENT" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" TextColor="#2F80ED" FontSize="Large" Padding="30"/>
+
+            <StackLayout Padding="20">
+                <Label Text="Area"></Label>
+                <Picker ItemsSource="{Binding AreasList}" SelectedItem="{Binding SelectedArea}">
+                </Picker>
+
+                <Label Text="Incident"></Label>
+                <Picker ItemsSource="{Binding IncidentsList}" SelectedItem="{Binding SelectedIncident}">
+                    <Picker.Items>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Text="Incident Descrition"></Label>
+                <Entry Text="{Binding NewIncidentReport.IncidentDescription}"></Entry>
+            </StackLayout>
+
+            <StackLayout HeightRequest="50" VerticalOptions="EndAndExpand" Padding="20">
+                <Button Text="SUBMIT REPORT" BackgroundColor="#2F80ED" TextColor="White" VerticalOptions="End" Command="{Binding ReportNewIncident}"></Button>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

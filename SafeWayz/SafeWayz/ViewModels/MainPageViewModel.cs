@@ -10,10 +10,17 @@ namespace SafeWayz.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        public DelegateCommand NavigateCommand { get; set; }
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "Main Page";
+            NavigateCommand = new DelegateCommand(ExcecuteNavigateCommand);
+        }
+
+        private void ExcecuteNavigateCommand()
+        {
+            NavigationService.NavigateAsync("NavigationPage/AddNewIncidentReport");
         }
     }
 }
