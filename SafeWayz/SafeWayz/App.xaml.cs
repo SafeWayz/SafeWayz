@@ -1,5 +1,7 @@
 ﻿using Prism;
 using Prism.Ioc;
+using SafeWayz.Services;
+using SafeWayz.Services.Interfaces;
 using SafeWayz.ViewModels;
 using SafeWayz.Views;
 using Xamarin.Forms;
@@ -28,8 +30,10 @@ namespace SafeWayz
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IDatabase, SafeWayZDatabase>();
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
         }
     }
 }

@@ -41,11 +41,13 @@ namespace SafeWayz.Services
             return userDatabase.InsertAsync(info);
         }
 
-        public void PointAllocation()
+        public Task PointAllocation()
         {
             var gamification = new UserModel();
 
             gamification.Point = 200;
+
+            return ;
 
         }
 
