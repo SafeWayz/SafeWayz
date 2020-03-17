@@ -1,7 +1,10 @@
 ﻿using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
+using SafeWayz.Messages;
 using SafeWayz.Model;
+using SafeWayz.Services;
 using SafeWayz.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,6 +16,7 @@ namespace SafeWayz.ViewModels
     {
         private readonly IDatabase _database;
         private readonly INavigationService _navigationService;
+        private readonly IEventAggregator _eventAggregator;
 
         private UserModel _person;
         public UserModel Person
@@ -29,13 +33,15 @@ namespace SafeWayz.ViewModels
         {
             var userProfile = new UserModel();
 
-            await _database.SaveItemAsync(Person + PointAllocation());
+            _eventAggregator.GetEvent<SignUpMessage>().Publish();
+            await _database.SaveItemAsync(Person);
         
         }
 
-        public SignUpPageViewModel(INavigationService navigationService, IDatabase database)
+        public SignUpPageViewModel(INavigationService navigationService, IDatabase database, IEventAggregator eventAggregator)
             : base(navigationService)
         {
+            _eventAggregator = eventAggregator;
             navigationService = _navigationService;
             _database = database;
             Person = new UserModel();

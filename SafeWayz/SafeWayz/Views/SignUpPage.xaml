@@ -4,5 +4,20 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SafeWayz.Views.SignUpPage">
-  
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+         
+
+                    <Entry  Text="{Binding Person.FullName}"   FontSize="Medium" TextColor="Black"  HorizontalTextAlignment="Center" BackgroundColor="White"/>
+                    <Entry  Text="{Binding Person.FullSurname}"   FontSize="Medium" TextColor="Black"  HorizontalTextAlignment="Center" BackgroundColor="White"/>
+                    <Entry  Text="{Binding Person.UserName}"   FontSize="Medium" TextColor="Black"  HorizontalTextAlignment="Center" BackgroundColor="White"/>
+                    <Entry  Text="{Binding Person.Email}"    FontSize="Medium" TextColor="Black"  HorizontalTextAlignment="Center" BackgroundColor="White"/>
+                    <Entry  Text="{Binding Person.Password}"    FontSize="Medium" TextColor="Black"  HorizontalTextAlignment="Center" BackgroundColor="White"/>
+                    <Button Text="Sign Up" Command="{Binding SignUpCommand}"/>
+
+      
+            </StackLayout>
+        </ScrollView> 
+    </ContentPage.Content>
 </ContentPage>

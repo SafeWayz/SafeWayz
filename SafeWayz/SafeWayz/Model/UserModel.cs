@@ -10,7 +10,6 @@ namespace SafeWayz.Model
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Profile { get; set; }
-
         public string FullName { get; set; }
         public string FullSurname { get; set; }
         public string UserName { get; set; }
@@ -23,7 +22,7 @@ namespace SafeWayz.Model
         public string IncidentComment { get; set; }
         public string Comment { get; set; }
         public string Report { get; set; }
-        public int Point { get; set; }
+        public string Point { get; set; }
 
     }
 }

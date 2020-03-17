@@ -26,9 +26,9 @@ namespace SafeWayz.Services
 
         }
 
-        public Task<UserModel> GetPeopleById(int id)
+        public Task<UserModel> GetPeopleByUserName(string username)
         {
-            return userDatabase.Table<UserModel>().Where(x => x.Id == id).FirstOrDefaultAsync();
+            return userDatabase.Table<UserModel>().Where(x => x.UserName == username).FirstOrDefaultAsync();
         }
 
         public Task<int> DeleteAllInformation()
@@ -39,16 +39,6 @@ namespace SafeWayz.Services
         public Task<int> SaveItemAsync(UserModel info)
         {
             return userDatabase.InsertAsync(info);
-        }
-
-        public Task PointAllocation()
-        {
-            var gamification = new UserModel();
-
-            gamification.Point = 200;
-
-            return ;
-
         }
 
     }
