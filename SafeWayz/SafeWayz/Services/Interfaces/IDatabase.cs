@@ -10,6 +10,7 @@ namespace SafeWayz.Services.Interfaces
     {
         Task<int> SaveItemAsync(UserModel info);
         Task<List<UserModel>> GetAllInformationData();
-        Task<UserModel> GetPeopleById(int id);
+        Task<UserModel> GetPeopleByUserName(string username);
+
     }
 }

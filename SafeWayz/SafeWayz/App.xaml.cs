@@ -5,9 +5,7 @@ using SafeWayz.Services.Interfaces;
 using SafeWayz.ViewModels;
 using SafeWayz.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SafeWayz
 {
     public partial class App
@@ -25,7 +23,7 @@ namespace SafeWayz
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("AppMasterDetailPage/NavigationPage/SignUpPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -34,6 +32,8 @@ namespace SafeWayz
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<LogInPage, LogInPageViewModel>();
+            containerRegistry.RegisterForNavigation<AppMasterDetailPage, AppMasterDetailPageViewModel>();
         }
     }
 }
