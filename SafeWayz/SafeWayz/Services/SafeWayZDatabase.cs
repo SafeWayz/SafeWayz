@@ -1,4 +1,5 @@
 ﻿using SafeWayz.Model;
+using SafeWayz.Models;
 using SafeWayz.Services.Interfaces;
 using SQLite;
 using System;
@@ -19,7 +20,13 @@ namespace SafeWayz.Services
 
             userDatabase = new SQLiteAsyncConnection(dbPath);
             userDatabase.CreateTableAsync<UserModel>().Wait();
+            userDatabase.CreateTableAsync<IncidentReport>().Wait();
         }
+
+
+        //USER MODEL DATABASE STUFF
+        /////////////////////////////////////////////////////////////////////////////
+
         public Task<List<UserModel>> GetAllInformationData()
         {
             return userDatabase.Table<UserModel>().ToListAsync();
@@ -41,12 +48,35 @@ namespace SafeWayz.Services
             return userDatabase.InsertAsync(info);
         }
 
+        //INCIDENT REPORTS DATABASE STUFF
+        /////////////////////////////////////////////////////////////////////////////
+        
+        public Task<List<IncidentReport>> GetAllIncidentReportInformationData()
+        {
+            return userDatabase.Table<IncidentReport>().ToListAsync();
+        }
+
+        public Task<IncidentReport> GetIncidentById(int id)
+        {
+            return userDatabase.Table<IncidentReport>().Where(x => x.ID == id).FirstOrDefaultAsync();
+        }
+        
+        public Task<int> DeleteAllIncidentReportInformation()
+        {
+            return userDatabase.DeleteAllAsync<IncidentReport>();
+        }
+
+        public Task<int> SaveIncidentReportAsync(IncidentReport newReport)
+        {
+            return userDatabase.InsertAsync(newReport);
+        }
+
+        /////////////////////////////////////////////////////////////////////////////
+
         public void PointAllocation()
         {
             var gamification = new UserModel();
-
-            gamification.Point = 200;
-
+                gamification.Point = 200;
         }
 
     }

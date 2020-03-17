@@ -35,6 +35,7 @@ namespace SafeWayz.ViewModels
         }
 
         /////////////////////////////////////////////////////////////////////////////
+        public DelegateCommand NavigateCommand { get; set; }
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
@@ -49,6 +50,12 @@ namespace SafeWayz.ViewModels
         private void ReportNewIncidentCommand()
         {
             throw new NotImplementedException();
+            NavigateCommand = new DelegateCommand(ExcecuteNavigateCommand);
+        }
+
+        private void ExcecuteNavigateCommand()
+        {
+            NavigationService.NavigateAsync("NavigationPage/AddNewIncidentReport");
         }
     }
 }

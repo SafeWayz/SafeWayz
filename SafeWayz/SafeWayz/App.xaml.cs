@@ -30,6 +30,8 @@ namespace SafeWayz
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddNewIncidentReport, AddNewIncidentReportViewModel>();
+            containerRegistry.RegisterForNavigation<AllCommunityPosts, AllCommunityPostsViewModel>();
         }
     }
 }

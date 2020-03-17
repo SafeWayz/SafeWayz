@@ -4,31 +4,9 @@
              x:Class="SafeWayz.Views.MainPage"
              Title="{Binding Title}">
 
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="REPORT AN INCIDENT" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" TextColor="#2F80ED" FontSize="Large" Padding="30"/>
-
-            <StackLayout Padding="20">
-                <Label Text="Area"></Label>
-                <Picker ItemsSource="{Binding AreasList}">
-                    <Picker.Items>
-                    </Picker.Items>
-                </Picker>
-
-                <Label Text="Incident"></Label>
-                <Picker ItemsSource="{Binding IncidentsList}">
-                    <Picker.Items>
-                    </Picker.Items>
-                </Picker>
-
-                <Entry Text="{Binding UserIncidentDescription}"></Entry>
-            </StackLayout>
-
-            <StackLayout HeightRequest="50" VerticalOptions="EndAndExpand" Padding="20">
-                <Button Text="SUBMIT REPORT" BackgroundColor="#2F80ED" TextColor="White" VerticalOptions="End"></Button>
-            </StackLayout>
-            
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Button Text="Add New Report" Command="{Binding NavigateCommand}"></Button>
+    </StackLayout>
 
 </ContentPage>
