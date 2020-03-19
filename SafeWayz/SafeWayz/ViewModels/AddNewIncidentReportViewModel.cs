@@ -78,19 +78,24 @@ namespace SafeWayz.ViewModels
 
         private async Task ReportNewIncidentCommand()
         {
+            //I ONLY COMMENTED THIS OUT TO MOVE TO THE NEXT PAGE QUICKER, WHEN YOU UNCOMMENT IT, IT SHOULD BE FINE
             //I WANTED TO USE THE NewIncidentReport PROPERTY TO MAKE THE CODE A BIT SHORTER BUT IT WAS GIVING ME ISSUES 
             //var newReport = NewIncidentReport;
-            IncidentReport newIncident = new IncidentReport()
-            {
-                Area = SelectedArea,
-                Incident = SelectedIncident,
-                IncidentDescription = UserIncidentDescription,
-                UpvotesAmount = 0
-            };
+            //IncidentReport newIncident = new IncidentReport()
+            //{
+            //    Area = SelectedArea,
+            //    Incident = SelectedIncident,
+            //    IncidentDescription = UserIncidentDescription,
+            //    UpvotesAmount = 0
+            //};
 
-            var dbconection = new SafeWayZDatabase();
-            await dbconection.SaveIncidentReportAsync(newIncident);
-            var allIncidentsFromDb = await dbconection.GetAllIncidentReportInformationData();
+            //var dbconection = new SafeWayZDatabase();
+            //await dbconection.SaveIncidentReportAsync(newIncident);
+
+            //THIS WAS JUST TO TEST WHETHER TTHE DATA IS ACTUALLY BEING SAVED 
+            //var allIncidentsFromDb = await dbconection.GetAllIncidentReportInformationData();
+
+            await NavigationService.NavigateAsync("NavigationPage/AllCommunityPosts");
         }
     }
 }

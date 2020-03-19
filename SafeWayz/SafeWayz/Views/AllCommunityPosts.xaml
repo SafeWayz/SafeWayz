@@ -4,5 +4,33 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SafeWayz.Views.AllCommunityPosts">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding IncidentsFromDB}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="20">
+                                <FlexLayout AlignContent="Start" JustifyContent="SpaceBetween">
+                                    <Label Text="{Binding Incident}"></Label>
+                                    <Label Text="{Binding Area}"></Label>
+                                </FlexLayout>
+                                
+                                <StackLayout>
+                                    <Label Text="{Binding IncidentDescription}"></Label>
+                                </StackLayout>
+                                
+                                <StackLayout>
+                                    <Button Text="COMMENT" Command="{Binding PostAComment}" HorizontalOptions="StartAndExpand"></Button>
+                                    <Button Text="UPVOTE" Command="{Binding UpvoteThisPost}" HorizontalOptions="EndAndExpand"></Button>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
   
 </ContentPage>

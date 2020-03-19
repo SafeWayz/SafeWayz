@@ -11,5 +11,6 @@ namespace SafeWayz.Models
         public string Surname { get; set; }
         public string Email { get; set; }
         public long UserToken { get; set; }
+        public long UserPoints { get; set; }
     }
 }
