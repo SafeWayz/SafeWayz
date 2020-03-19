@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SafeWayz.ViewModels
 {
@@ -61,7 +62,7 @@ namespace SafeWayz.ViewModels
         }
 
         public DelegateCommand ReportNewIncident =>
-            _reportNewIncident ?? (_reportNewIncident = new DelegateCommand(ReportNewIncidentCommand));
+            _reportNewIncident ?? (_reportNewIncident = new DelegateCommand(async () => await ReportNewIncidentCommand()));
 
 
         //METHODS COME HERE
@@ -75,9 +76,10 @@ namespace SafeWayz.ViewModels
             IncidentsList = areas.GetTheIncidentsAndAddToList(IncidentsList);
         }
 
-        private void ReportNewIncidentCommand()
+        private async Task ReportNewIncidentCommand()
         {
-            var newReport = NewIncidentReport;
+            //I WANTED TO USE THE NewIncidentReport PROPERTY TO MAKE THE CODE A BIT SHORTER BUT IT WAS GIVING ME ISSUES 
+            //var newReport = NewIncidentReport;
             IncidentReport newIncident = new IncidentReport()
             {
                 Area = SelectedArea,
@@ -87,9 +89,8 @@ namespace SafeWayz.ViewModels
             };
 
             var dbconection = new SafeWayZDatabase();
-            dbconection.SaveIncidentReportAsync(newIncident);
-
-
+            await dbconection.SaveIncidentReportAsync(newIncident);
+            var allIncidentsFromDb = await dbconection.GetAllIncidentReportInformationData();
         }
     }
 }

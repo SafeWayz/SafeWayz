@@ -11,17 +11,13 @@
 
             <StackLayout Padding="20">
                 <Label Text="Area"></Label>
-                <Picker ItemsSource="{Binding AreasList}" SelectedItem="{Binding SelectedArea}">
-                </Picker>
+                <Picker ItemsSource="{Binding AreasList}" SelectedItem="{Binding SelectedArea}"></Picker>
 
                 <Label Text="Incident"></Label>
-                <Picker ItemsSource="{Binding IncidentsList}" SelectedItem="{Binding SelectedIncident}">
-                    <Picker.Items>
-                    </Picker.Items>
-                </Picker>
+                <Picker ItemsSource="{Binding IncidentsList}" SelectedItem="{Binding SelectedIncident}"></Picker>
 
                 <Label Text="Incident Descrition"></Label>
-                <Entry Text="{Binding NewIncidentReport.IncidentDescription}"></Entry>
+                <Entry Text="{Binding UserIncidentDescription}"></Entry>
             </StackLayout>
 
             <StackLayout HeightRequest="50" VerticalOptions="EndAndExpand" Padding="20">

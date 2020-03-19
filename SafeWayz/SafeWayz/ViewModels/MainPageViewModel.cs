@@ -12,7 +12,10 @@ namespace SafeWayz.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         private string _userIncidentDescription;
-        private DelegateCommand ReportNewIncident { get; set; }
+
+        //private DelegateCommand ReportNewIncident { get; set; }
+
+        private DelegateCommand _excecuteNavigate;
 
         private ObservableCollection<string> _areasList;
         private ObservableCollection<string> _incidentsList;
@@ -34,8 +37,11 @@ namespace SafeWayz.ViewModels
             set { SetProperty(ref _userIncidentDescription, value); }
         }
 
+        public DelegateCommand NavigateCommand =>
+            _excecuteNavigate ?? (_excecuteNavigate = new DelegateCommand(ExcecuteNavigateCommand));
+
         /////////////////////////////////////////////////////////////////////////////
-        public DelegateCommand NavigateCommand { get; set; }
+        //public DelegateCommand NavigateCommand { get; set; }
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
@@ -44,18 +50,20 @@ namespace SafeWayz.ViewModels
             AreasList = areas.GetTheAreasAndAddToList(AreasList);
             IncidentsList = areas.GetTheIncidentsAndAddToList(IncidentsList);
 
-            ReportNewIncident = new DelegateCommand(ReportNewIncidentCommand);
+            /*ReportNewIncident = new DelegateCommand(ReportNewIncidentCommand);*/
         }
 
         private void ReportNewIncidentCommand()
         {
             throw new NotImplementedException();
-            NavigateCommand = new DelegateCommand(ExcecuteNavigateCommand);
+            //NavigateCommand = new DelegateCommand(ExcecuteNavigateCommand);
         }
 
         private void ExcecuteNavigateCommand()
         {
             NavigationService.NavigateAsync("NavigationPage/AddNewIncidentReport");
         }
+
+        
     }
 }
