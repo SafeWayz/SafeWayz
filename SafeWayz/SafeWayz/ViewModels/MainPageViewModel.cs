@@ -13,9 +13,8 @@ namespace SafeWayz.ViewModels
     {
         private string _userIncidentDescription;
 
-        //private DelegateCommand ReportNewIncident { get; set; }
-
         private DelegateCommand _excecuteNavigate;
+        private DelegateCommand _navigateToNextPage;
 
         private ObservableCollection<string> _areasList;
         private ObservableCollection<string> _incidentsList;
@@ -39,6 +38,8 @@ namespace SafeWayz.ViewModels
 
         public DelegateCommand NavigateCommand =>
             _excecuteNavigate ?? (_excecuteNavigate = new DelegateCommand(ExcecuteNavigateCommand));
+        public DelegateCommand NavigateToNextPage =>
+            _navigateToNextPage ?? (_navigateToNextPage = new DelegateCommand(NavigateToNextPageCommand));
 
         /////////////////////////////////////////////////////////////////////////////
         //public DelegateCommand NavigateCommand { get; set; }
@@ -47,16 +48,9 @@ namespace SafeWayz.ViewModels
         {
             Title = "Main Page";
             var areas = new PopulateThePickers();
+            //THIS IS HOW WE POPULATE THE OPTIONS FOR BOTHE DROPDOWN PICKERS
             AreasList = areas.GetTheAreasAndAddToList(AreasList);
             IncidentsList = areas.GetTheIncidentsAndAddToList(IncidentsList);
-
-            /*ReportNewIncident = new DelegateCommand(ReportNewIncidentCommand);*/
-        }
-
-        private void ReportNewIncidentCommand()
-        {
-            throw new NotImplementedException();
-            //NavigateCommand = new DelegateCommand(ExcecuteNavigateCommand);
         }
 
         private void ExcecuteNavigateCommand()
@@ -64,6 +58,11 @@ namespace SafeWayz.ViewModels
             NavigationService.NavigateAsync("NavigationPage/AddNewIncidentReport");
         }
 
+
+        private void NavigateToNextPageCommand()
+        {
+            NavigationService.NavigateAsync("NavigationPage/AddNewIncidentReport");
+        }
         
     }
 }

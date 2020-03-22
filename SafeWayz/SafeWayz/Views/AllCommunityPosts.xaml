@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:converters1="clr-namespace:SafeWayz.Converters"
+             prism:ViewModelLocator.AutowireViewModel="True" 
              x:Class="SafeWayz.Views.AllCommunityPosts">
 
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding IncidentsFromDB}" HasUnevenRows="True">
+            <ListView ItemsSource="{Binding IncidentsFromDB}" HasUnevenRows="True" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -29,6 +31,12 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" 
+                                                      Command="{Binding NavigateCommand}"
+                                                      EventArgsConverter="{converters1:ItemTappedEventArgsConverter}" />
+                </ListView.Behaviors>
             </ListView>
         </StackLayout>
     </ContentPage.Content>

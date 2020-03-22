@@ -30,7 +30,6 @@ namespace SafeWayz.Services
         public Task<List<UserModel>> GetAllInformationData()
         {
             return userDatabase.Table<UserModel>().ToListAsync();
-
         }
 
         public Task<UserModel> GetPeopleById(int id)
@@ -50,7 +49,6 @@ namespace SafeWayz.Services
 
         //INCIDENT REPORTS DATABASE STUFF
         /////////////////////////////////////////////////////////////////////////////
-        
         public Task<List<IncidentReport>> GetAllIncidentReportInformationData()
         {
             return userDatabase.Table<IncidentReport>().ToListAsync();
@@ -71,12 +69,21 @@ namespace SafeWayz.Services
             return userDatabase.InsertAsync(newReport);
         }
 
+        //POINT ALLOCATION STUFF
         /////////////////////////////////////////////////////////////////////////////
-
         public void PointAllocation()
         {
-            var gamification = new UserModel();
-                gamification.Point = 200;
+            var gamification = new UserModel
+            {
+                Point = 200
+            };
+        }
+
+        public void addPoints(UserModel currentUser, int pointsToAdd)
+        {
+            currentUser.Point = currentUser.Point + pointsToAdd;
+            //UPDATE THE USERS POINTS IN THE DATABASE
+            //userDatabase.UpdateUsersPointsAsync();
         }
 
     }

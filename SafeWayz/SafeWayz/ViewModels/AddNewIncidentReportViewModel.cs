@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using SafeWayz.Models;
 using SafeWayz.Services;
+using SafeWayz.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ namespace SafeWayz.ViewModels
 
         private string _selectedArea;
         private string _selectedIncident;
+        private readonly IDatabase _database;
         private string _userIncidentDescription;
 
         private IncidentReport _newIncidentReport;
@@ -67,11 +69,15 @@ namespace SafeWayz.ViewModels
 
         //METHODS COME HERE
         /////////////////////////////////////////////////////////////////////////////
-        public AddNewIncidentReportViewModel(INavigationService navigationService)
+        public AddNewIncidentReportViewModel(INavigationService navigationService, IDatabase database)
             : base(navigationService)
         {
-            var areas = new PopulateThePickers();
+            _database = database;
 
+            var areas = new PopulateThePickers();
+            NewIncidentReport = new IncidentReport();
+
+            //THIS IS HOW WE POPULATE THE OPTIONS FOR BOTHE DROPDOWN PICKER
             AreasList = areas.GetTheAreasAndAddToList(AreasList);
             IncidentsList = areas.GetTheIncidentsAndAddToList(IncidentsList);
         }
@@ -79,21 +85,10 @@ namespace SafeWayz.ViewModels
         private async Task ReportNewIncidentCommand()
         {
             //I ONLY COMMENTED THIS OUT TO MOVE TO THE NEXT PAGE QUICKER, WHEN YOU UNCOMMENT IT, IT SHOULD BE FINE
-            //I WANTED TO USE THE NewIncidentReport PROPERTY TO MAKE THE CODE A BIT SHORTER BUT IT WAS GIVING ME ISSUES 
-            //var newReport = NewIncidentReport;
-            //IncidentReport newIncident = new IncidentReport()
-            //{
-            //    Area = SelectedArea,
-            //    Incident = SelectedIncident,
-            //    IncidentDescription = UserIncidentDescription,
-            //    UpvotesAmount = 0
-            //};
-
-            //var dbconection = new SafeWayZDatabase();
-            //await dbconection.SaveIncidentReportAsync(newIncident);
+            await _database.SaveIncidentReportAsync(NewIncidentReport);
 
             //THIS WAS JUST TO TEST WHETHER TTHE DATA IS ACTUALLY BEING SAVED 
-            //var allIncidentsFromDb = await dbconection.GetAllIncidentReportInformationData();
+            var allIncidentsFromDb = await _database.GetAllIncidentReportInformationData();
 
             await NavigationService.NavigateAsync("NavigationPage/AllCommunityPosts");
         }

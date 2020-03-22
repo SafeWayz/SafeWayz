@@ -29,9 +29,11 @@ namespace SafeWayz
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
+
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<AddNewIncidentReport, AddNewIncidentReportViewModel>();
             containerRegistry.RegisterForNavigation<AllCommunityPosts, AllCommunityPostsViewModel>();
+            containerRegistry.RegisterForNavigation<AddNewIncidentReport, AddNewIncidentReportViewModel>();
+            containerRegistry.RegisterForNavigation<ViewIndividualPostWithComments, ViewIndividualPostWithCommentsViewModel>();
         }
     }
 }
